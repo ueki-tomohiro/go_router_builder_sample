@@ -1,0 +1,20 @@
+name: go_router_builder_sample_workspace
+sdkPath: .fvm/flutter_sdk
+
+packages:
+  - packages/app/*
+
+scripts:
+  format: 
+    run: fvm dart format --fix packages
+  
+  build_runner:
+    exec: fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+    select-package:
+      depends-on: 'build_runner'
+
+  test:unit:
+    exec: fvm flutter test
+    select-package:
+      dir-exists:
+        - test

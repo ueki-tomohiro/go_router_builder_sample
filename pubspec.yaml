@@ -1,0 +1,8 @@
+name: app_workspace
+version: 1.0.7
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+dev_dependencies:
+  melos: ^3.0.0
+  lints: ^2.0.1
