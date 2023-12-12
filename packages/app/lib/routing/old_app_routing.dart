@@ -15,7 +15,6 @@ class AppRouteKeys {
   static const counselingPaymentComplete = 'counselingPaymentComplete';
   static const inquiry = 'inquiry';
   static const setting = 'setting';
-  static const signIn = 'signIn';
 }
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
