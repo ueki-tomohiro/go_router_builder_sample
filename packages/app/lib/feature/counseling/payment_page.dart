@@ -20,7 +20,7 @@ class PaymentPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 context.pushNamed(
-                  AppRouteKeys.counselingPayment,
+                  AppRouteKeys.counselingPaymentComplete,
                   pathParameters: {'counselingId': '$counselingId'},
                 );
               },

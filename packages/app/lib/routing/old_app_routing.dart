@@ -3,6 +3,7 @@ import 'package:app/feature/counseling/payment_complete_page.dart';
 import 'package:app/feature/counseling/payment_page.dart';
 import 'package:app/feature/home/home_page.dart';
 import 'package:app/feature/inquiry/inquiry_page.dart';
+import 'package:app/feature/root/root_page.dart';
 import 'package:app/feature/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +26,7 @@ final GlobalKey<NavigatorState> homeNavigatorKey =
 final routes = [
   ShellRoute(
     navigatorKey: homeNavigatorKey,
+    builder: (context, state, child) => RootPage(page: child),
     routes: [
       GoRoute(
           path: '/home',
@@ -39,33 +41,32 @@ final routes = [
           name: AppRouteKeys.setting,
           builder: (context, state) =>
               SettingPage(initTab: state.uri.queryParameters['tab'])),
-      GoRoute(
-          path: '/counseling/:id',
-          name: AppRouteKeys.counseling,
+    ],
+  ),
+  GoRoute(
+      path: '/counseling/:counselingId',
+      name: AppRouteKeys.counseling,
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (context, state) => CounselingPage(
+          counselingId: int.parse(state.pathParameters['counselingId']!)),
+      routes: [
+        GoRoute(
+          path: 'payment',
+          name: AppRouteKeys.counselingPayment,
           parentNavigatorKey: rootNavigatorKey,
-          builder: (context, state) => CounselingPage(
+          builder: (context, state) => PaymentPage(
               counselingId: int.parse(state.pathParameters['counselingId']!)),
           routes: [
             GoRoute(
-              path: 'payment',
-              name: AppRouteKeys.counselingPayment,
-              parentNavigatorKey: rootNavigatorKey,
-              builder: (context, state) => PaymentPage(
-                  counselingId:
-                      int.parse(state.pathParameters['counselingId']!)),
-              routes: [
-                GoRoute(
-                    path: 'complete',
-                    name: AppRouteKeys.counselingPaymentComplete,
-                    parentNavigatorKey: rootNavigatorKey,
-                    builder: (context, state) => PaymentCompletePage(
-                        counselingId:
-                            int.parse(state.pathParameters['counselingId']!))),
-              ],
-            ),
-          ]),
-    ],
-  ),
+                path: 'complete',
+                name: AppRouteKeys.counselingPaymentComplete,
+                parentNavigatorKey: rootNavigatorKey,
+                builder: (context, state) => PaymentCompletePage(
+                    counselingId:
+                        int.parse(state.pathParameters['counselingId']!))),
+          ],
+        ),
+      ]),
 ];
 
 final router = GoRouter(

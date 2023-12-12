@@ -9,7 +9,7 @@ enum RootTab {
   setting;
 }
 
-class RootPage extends StatelessWidget {
+class RootPage extends HookWidget {
   final Widget page;
   const RootPage({
     super.key,
@@ -43,12 +43,12 @@ class RootPage extends StatelessWidget {
               label: 'Home'),
           BottomNavigationBarItem(
               icon: const Icon(
-                Icons.calendar_month,
+                Icons.info,
               ),
               label: 'Inquiry'),
           BottomNavigationBarItem(
               icon: const Icon(
-                Icons.account_box,
+                Icons.account_circle,
               ),
               label: 'Setting'),
         ],
