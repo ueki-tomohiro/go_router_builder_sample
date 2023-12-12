@@ -2,7 +2,7 @@ name: go_router_builder_sample_workspace
 sdkPath: .fvm/flutter_sdk
 
 packages:
-  - packages/app/*
+  - packages/app
 
 scripts:
   format: 
@@ -13,7 +13,7 @@ scripts:
     select-package:
       depends-on: 'build_runner'
 
-  test:unit:
+  test:
     exec: fvm flutter test
     select-package:
       dir-exists:
