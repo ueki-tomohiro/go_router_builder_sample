@@ -27,6 +27,11 @@ class HomePage extends StatelessWidget {
                   pathParameters: {'counselingId': '3'}),
               child: Text('Counseling 3'),
             ),
+            ElevatedButton(
+              onPressed: () => context.pushNamed(AppRouteKeys.setting,
+                  queryParameters: {'tab': 'counseling'}),
+              child: Text('Setting tab'),
+            ),
           ],
         ),
       ),
