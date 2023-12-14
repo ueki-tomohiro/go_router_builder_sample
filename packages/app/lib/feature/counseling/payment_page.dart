@@ -1,6 +1,5 @@
-import 'package:app/routing/old_app_routing.dart';
+import 'package:app/routing/app_routing.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class PaymentPage extends StatelessWidget {
   final int counselingId;
@@ -18,12 +17,8 @@ class PaymentPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
-                context.pushNamed(
-                  AppRouteKeys.counselingPaymentComplete,
-                  pathParameters: {'counselingId': '$counselingId'},
-                );
-              },
+              onPressed: () => PaymentCompleteRoute(counselingId: counselingId)
+                  .push(context),
               child: Text('Go to payment complete'),
             ),
           ],

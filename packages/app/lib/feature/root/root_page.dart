@@ -1,7 +1,6 @@
-import 'package:app/routing/old_app_routing.dart';
+import 'package:app/routing/app_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 
 enum RootTab {
   home,
@@ -28,11 +27,11 @@ class RootPage extends HookWidget {
         onTap: (index) {
           tabIndex.value = index;
           if (index == RootTab.home.index) {
-            context.pushNamed(AppRouteKeys.home);
+            HomeRoute().push(context);
           } else if (index == RootTab.inquiry.index) {
-            context.pushNamed(AppRouteKeys.inquiry);
+            InquiryRoute().push(context);
           } else if (index == RootTab.setting.index) {
-            context.pushNamed(AppRouteKeys.setting);
+            SettingRoute().push(context);
           }
         },
         items: [

@@ -1,6 +1,5 @@
-import 'package:app/routing/old_app_routing.dart';
+import 'package:app/routing/app_routing.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,23 +12,19 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => context.pushNamed(AppRouteKeys.counseling,
-                  pathParameters: {'counselingId': '1'}),
+              onPressed: () => CounselingRoute(counselingId: 1).push(context),
               child: Text('Counseling 1'),
             ),
             ElevatedButton(
-              onPressed: () => context.pushNamed(AppRouteKeys.counseling,
-                  pathParameters: {'counselingId': '2'}),
+              onPressed: () => CounselingRoute(counselingId: 2).push(context),
               child: Text('Counseling 2'),
             ),
             ElevatedButton(
-              onPressed: () => context.pushNamed(AppRouteKeys.counseling,
-                  pathParameters: {'counselingId': '3'}),
+              onPressed: () => CounselingRoute(counselingId: 3).push(context),
               child: Text('Counseling 3'),
             ),
             ElevatedButton(
-              onPressed: () => context.pushNamed(AppRouteKeys.setting,
-                  queryParameters: {'tab': 'counseling'}),
+              onPressed: () => SettingRoute(tab: 'counseling').push(context),
               child: Text('Setting tab'),
             ),
           ],
