@@ -1,8 +1,4 @@
-import 'package:app/feature/home/home_page.dart';
-import 'package:app/feature/inquiry/inquiry_page.dart';
-import 'package:app/feature/setting/setting_page.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+part of 'app_routing.dart';
 
 class HomeRoute extends GoRouteData {
   @override

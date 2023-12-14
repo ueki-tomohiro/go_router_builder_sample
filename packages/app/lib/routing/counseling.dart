@@ -1,8 +1,4 @@
-import 'package:app/feature/counseling/payment_complete_page.dart';
-import 'package:app/feature/counseling/payment_page.dart';
-import 'package:app/routing/old_app_routing.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+part of 'app_routing.dart';
 
 class PaymentRoute extends GoRouteData {
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;

@@ -1,15 +1,17 @@
 import 'package:app/feature/counseling/counseling_page.dart';
+import 'package:app/feature/counseling/payment_complete_page.dart';
+import 'package:app/feature/counseling/payment_page.dart';
+import 'package:app/feature/home/home_page.dart';
+import 'package:app/feature/inquiry/inquiry_page.dart';
 import 'package:app/feature/root/root_page.dart';
-import 'package:app/routing/counseling.dart';
+import 'package:app/feature/setting/setting_page.dart';
 import 'package:app/routing/old_app_routing.dart';
-import 'package:app/routing/root.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
-export 'package:app/routing/counseling.dart';
-export 'package:app/routing/root.dart';
-
 part 'app_routing.g.dart';
+part 'counseling.dart';
+part 'root.dart';
 
 @TypedShellRoute<RootRoute>(
   routes: [
