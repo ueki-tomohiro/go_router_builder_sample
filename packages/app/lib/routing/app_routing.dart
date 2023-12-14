@@ -6,6 +6,7 @@ import 'package:app/feature/inquiry/inquiry_page.dart';
 import 'package:app/feature/root/root_page.dart';
 import 'package:app/feature/setting/setting_page.dart';
 import 'package:app/routing/old_app_routing.dart';
+import 'package:app/routing/route_data.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -53,7 +54,7 @@ class RootRoute extends ShellRouteData {
     ),
   ],
 )
-class CounselingRoute extends GoRouteData {
+class CounselingRoute extends BottomGoRouteData {
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
   final int counselingId;
 
