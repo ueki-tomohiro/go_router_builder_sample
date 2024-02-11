@@ -5,8 +5,14 @@ packages:
   - packages/app
 
 scripts:
-  format: 
-    run: fvm dart format --fix packages
+  analyze:
+    exec: fvm flutter analyze . --fatal-infos
+      
+  lint:
+    run: melos run analyze && melos run format
+
+  format:
+    run: fvm dart format --set-exit-if-changed packages
   
   build_runner:
     exec: fvm flutter packages pub run build_runner build --delete-conflicting-outputs
@@ -18,3 +24,15 @@ scripts:
     select-package:
       dir-exists:
         - test
+
+  test-ci:unit:
+    exec: fvm flutter test --machine > test.json
+    packageFilters:
+      scope: 'app'
+
+  test-ci:coverage:
+    exec: fvm flutter test --coverage
+    packageFilters:
+      scope: 'app'
+
+  test-ci:combine: melos exec "\$MELOS_ROOT_PATH/scripts/combine_test.sh"

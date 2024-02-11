@@ -1,0 +1,58 @@
+name: setup flutter
+description: setup flutter
+runs:
+  using: "composite"
+  steps:
+    - name: setup java
+      uses: actions/setup-java@v4
+      with:
+        java-version: "11"
+        distribution: "adopt"
+    - uses: dart-lang/setup-dart@v1
+      with:
+        sdk: 3.1.3
+    - name: restore fvm cache
+      uses: actions/cache@v4
+      with:
+        path: ~/fvm/versions
+        key: ${{ runner.os }}-fvm-${{ hashFiles('.fvm/fvm_config.json') }}
+        restore-keys: |
+          fvm-${{ runner.os }}-${{ hashFiles('.fvm/fvm_config.json') }}
+          fvm-${{ runner.os }}
+    - name: restore pubspec cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.pub-cache
+        key: ${{ runner.os }}-pubspec-${{ hashFiles('**/pubspec.lock') }}
+        restore-keys: |
+          pubspec-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          pubspec-${{ runner.os }}
+    - name: restore dart_tool
+      uses: actions/cache@v4
+      with:
+        path: |
+          packages/app/.dart_tool
+        key: ${{ runner.os }}-dart-tool-${{ hashFiles('**/pubspec.lock') }}
+        restore-keys: |
+          dart-tool-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          dart-tool-${{ runner.os }}
+    - name: restore build_runner
+      uses: actions/cache@v4
+      with:
+        path: |
+          packages/app/**/*.g.dart
+          packages/app/**/*.mocks.dart
+          packages/app/**/*.freezed.dart
+        key: ${{ runner.os }}-build-runner-${{ hashFiles('packages/app/**/*.dart', '**/pubspec.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-runner-${{ hashFiles('packages/app/**/*.dart', '**/pubspec.lock') }}
+          ${{ runner.os }}-build-runner
+          ${{ runner.os }}-
+    - name: Install fvm
+      run: |
+        dart pub global activate fvm 2.4.1
+        fvm install --verbose
+      shell: bash
+    - name: Install melos command
+      run: dart pub global activate melos 3.1.1
+      shell: bash
