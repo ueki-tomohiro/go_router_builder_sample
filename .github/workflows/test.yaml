@@ -1,0 +1,45 @@
+name: lint
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - packages/api/**
+      - packages/app/**
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: set up repository
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-flutter
+      - name: melos bs
+        run: melos bs
+      - name: flutter build_runner
+        run: melos run build_runner
+      - name: flutter lint
+        run: melos run lint
+
+  unit_test:
+    needs: lint
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: set up repository
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-flutter
+      - name: melos bs
+        run: melos bs
+      - name: flutter build_runner
+        run: melos run build_runner
+      - name: flutter test
+        run: melos run test-ci:unit
+      - name: flutter test combine
+        run: melos run test-ci:combine
+        if: success() || failure()
+      - uses: ueki-tomohiro/flutter-test-action@v1
+        with:
+          machinePath: report/test.json
+        if: success() || failure()
